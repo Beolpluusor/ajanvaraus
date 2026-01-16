@@ -8,13 +8,19 @@ const db = require("../db");
 
 // register user
 router.post("/register", async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, createdAt } = req.body;
+        if (!username || !password || !createdAt) {
+            return res.json({
+                status: "error",
+                message: "missing_fields",
+        });
+    }
 
     const hash = await bcrypt.hash(password, 10);
 
     db.query(
-        "INSERT INTO users (username, password_hash) VALUES (?, ?)",
-        [username, hash],
+        "INSERT INTO users (username, password_hash, CREATED_AT ) VALUES (?, ?, ?)",
+        [username, hash, createdAt],
         (err) => {
             if (err) return res.json({ status: "error", error: err});
             res.json({status: "ok" });
