@@ -5,6 +5,7 @@ const db = require("../db");
 
 const router = express.Router();
 
+// register user
 router.post("/register", async (req, res) => {
     const { username, password } = req.body;
 
@@ -19,7 +20,7 @@ router.post("/register", async (req, res) => {
         }
     );
 });
-
+// login user
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
 
