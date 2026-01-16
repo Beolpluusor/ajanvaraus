@@ -1,9 +1,10 @@
 const express = require("express");
+const router = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../db");
 
-const router = express.Router();
+
 
 // register user
 router.post("/register", async (req, res) => {
@@ -20,6 +21,7 @@ router.post("/register", async (req, res) => {
         }
     );
 });
+
 // login user
 router.post("/login", (req, res) => {
     const { username, password } = req.body;
@@ -32,7 +34,7 @@ router.post("/login", (req, res) => {
                 return res.json({ status: "error", error: "User not found"});
 
             const user = results[0];
-            const match = await.bcrypt.compare(password, user.password_hash);
+            const match = await bcrypt.compare(password, user.password_hash);
 
             if (!match) return res.json({ status: "error", error: "Wrong password"});
 
