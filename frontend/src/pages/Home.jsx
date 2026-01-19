@@ -1,10 +1,12 @@
-
+import { useNavigate } from "react-router-dom";
 
 export default function Home () {
 
+    const navigate = useNavigate();
+    
     const handleLogout = () => {
-        localStorage.removeItem("token", response.data.token)
-        Navigate("/");
+        localStorage.removeItem("token");
+        navigate("/");
     }
 
 
