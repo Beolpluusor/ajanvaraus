@@ -15,6 +15,8 @@ app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/appointments", appointmentRoutes);
 
+app.use("/api/bookings", require("./routes/bookings"));
+
 app.listen(5000, () => {
     console.log("Backend running in port 5000");
 });

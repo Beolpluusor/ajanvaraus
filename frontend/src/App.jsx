@@ -3,7 +3,7 @@ import Login from "./pages/Login";
 import Calendar from "./pages/Calendar";
 import Main from "./pages/Home";
 import Register from "./pages/Register";
-
+import "./app.css";
 
 export default function App() {
  
