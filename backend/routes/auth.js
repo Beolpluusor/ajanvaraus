@@ -33,14 +33,14 @@ router.post("/login", (req, res) => {
     const { username, password } = req.body;
 
     db.query(
-        "SELECT FROM users WHERE username = ?",
+        "SELECT * FROM users WHERE username = ?",
         [username],
         async (err, results) => {
             if (err || results.length === 0)
                 return res.json({ status: "error", error: "User not found"});
 
             const user = results[0];
-            const match = await bcrypt.compare(password, user.password_hash);
+            const match = await bcrypt.compare(password, user.PASSWORD_HASH);
 
             if (!match) return res.json({ status: "error", error: "Wrong password"});
 
